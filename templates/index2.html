@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en"  data-mdb-theme="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MDBootstrap demo</title>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.0.0/mdb.min.css" rel="stylesheet" />
+</head>
+<body class="container">
+<header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body">
+        <div class="container-fluid">
+            <button
+                    data-mdb-collapse-init
+                    class="navbar-toggler"
+                    type="button"
+                    data-mdb-target="#navbarExample01"
+                    aria-controls="navbarExample01"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarExample01">
+                <h1>Codebin</h1>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar --></header>
+<main>
+    <body class="container">
+
+    <div class="row mt-4 g-4">
+
+
+        <div class="col-8">
+            <h1 class="mb-4">Add snippet</h1>
+
+            <form hx-post="/add-film/" hx-target="#film-list" hx-swap="beforeend" hx-indicator="#spinner">
+                <div class="mb-2">
+                    <label for="film-title">Title</label>
+                    <input type="text" name="title" id="film-title" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label for="film-director">Director</label>
+                    <input type="text" name="director" id="film-director" class="form-control" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <span class="spinner-border spinner-border-sm htmx-indicator" id="spinner" role="status" aria-hidden="true"></span>
+                    Submit
+                </button>
+            </form>
+        </div>
+
+        <div class="col-4">
+            <h1 class="mb-4">Last added snippets</h1>
+
+            <ul class="list-group fs-5 me-5" id="film-list">
+                <li class="list-group-item  text-black">Тест тест </li>
+                <li class="list-group-item  text-black">Тест2 2 </li>
+<!--                {{ range .Films }}-->
+<!--                {{ block "film-list-element" .}}-->
+<!--                <li class="list-group-item bg-primary text-white">{{ .Title }} - {{ .Director }}</li>-->
+<!--                {{ end }}-->
+<!--                {{ end }}-->
+            </ul>
+        </div>
+
+
+    </div>
+
+    </body>
+</main>
+
+
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-body-tertiary text-muted">
+    <!-- Section: Social media -->
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+        <!-- Left -->
+        <div class="me-5 d-none d-lg-block">
+            <span>Get connected with us on social networks:</span>
+        </div>
+        <!-- Left -->
+
+        <!-- Right -->
+        <div>
+            <a href="" class="me-4 text-reset">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+                <i class="fab fa-google"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+        <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+
+
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2021 Copyright:
+        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+
+
+<script>
+    function saveCode() {
+        // Здесь будет логика сохранения кода на сервере
+        var code = document.getElementById('codeInput').value;
+        // Добавьте здесь код для отправки данных на сервер
+        console.log('Код сохранен: ', code);
+    }
+</script>
+</body>
+</html>

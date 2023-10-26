@@ -1,0 +1,116 @@
+syntax = "proto3";
+
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/kratorr/codebin/pkg/snippet_v1;snippet_v1";
+
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "Codebin API";
+    version: "0.0.1a";
+    contact: {
+      name: "kratorr";
+      email: "smirnovv91@gmail.com"
+    }
+  }
+
+  host: "localhost:9001"
+  schemes: HTTP,
+  schemes: HTTPS,
+  consumes: "application/json",
+  produces: "application/json"
+
+  security_definitions: {
+    security: {
+      key: "bearer"
+      value: {
+        type: TYPE_API_KEY
+        in: IN_HEADER
+        name: "Authorization"
+        description: "Authentication token, prefixed by Bearer: Bearer <token>"
+      }
+    }
+  }
+  security: {
+    security_requirement: {
+      key: "bearer"
+    }
+  }
+};
+
+
+
+service SnippetV1 {
+  rpc Create (CreateSnippetRequest) returns (CreateSnippetResponse) {
+    option (google.api.http) = {
+      post: "/v1/snippet"
+      body: "*"
+    };
+  };
+  rpc Delete (DeleteSnippetRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/v1/snippet"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "ApiKeyAuth";
+          value: {}
+        }
+        security_requirement: {
+          key: "OAuth2";
+          value: {
+            scope: "read";
+            scope: "write";
+          }
+        }
+      }
+    };
+  };
+  rpc ReadLatest (ReadLatestRequest) returns (ReadLatestResponse) {
+    option (google.api.http) = {
+      post: "/v1/snippet/latest"
+      body: "*"
+    };
+  };
+
+  rpc List (google.protobuf.Empty) returns (ListSnippetResponse) {
+    option (google.api.http) = {
+      get: "/v1/snippets"
+    };
+  };
+
+};
+
+
+message Snippet {
+  string text = 1;
+  int64 language = 2;
+  string title = 3;
+}
+
+message CreateSnippetRequest {
+  Snippet snippet = 1;
+}
+
+message CreateSnippetResponse {
+  string short_url = 1;
+}
+
+message DeleteSnippetRequest {
+  Snippet short_url = 1;
+}
+
+message ListSnippetResponse {
+  repeated Snippet snippets = 1;
+}
+
+message ReadLatestRequest {}
+
+message ReadLatestResponse {
+  repeated Snippet snippets = 1;
+}

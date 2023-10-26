@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #202123;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: left; /* Выравнивание по левому краю */
+    padding: 1em;
+}
+
+#logo {
+    margin: 0; /* Убираем отступы */
+}
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Изменения для текстового поля */
+textarea {
+    width: calc(100% - 20px); /* Почти на всю ширину с учетом внутренних отступов */
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #888; /* Серый цвет фона */
+    color: white;
+}
+
+textarea::placeholder {
+    color: white; /* Белый цвет для placeholder */
+}
+
+button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}

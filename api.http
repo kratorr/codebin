@@ -1,0 +1,17 @@
+POST localhost:9001/v1/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "testpassword",
+  "email": "test@email.ru"
+}
+
+###
+
+POST localhost:9001/v1/snippet/create
+Content-Type: application/json
+
+{}
+
+###

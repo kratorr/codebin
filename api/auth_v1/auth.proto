@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+import "google/protobuf/any.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/kratorr/codebin/pkg/auth_v1;auth_v1";
+
+
+service Auth {
+  rpc Register(RegisterRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/v1/auth/register"
+      body: "*"
+    };
+  };
+  rpc Login (LoginRequest) returns (LoginResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/login"
+      body: "*"
+    };
+  };
+  rpc Activate(ActiveRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      get: "/v1/auth/activate"
+    };
+  };
+  rpc GetRefreshToken (GetRefreshTokenRequest) returns (GetRefreshTokenResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/refresh_token"
+    };
+  };
+  rpc GetAccessToken (GetAccessTokenRequest) returns (GetAccessTokenResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/access_token"
+      body: "*"
+    };
+  };
+}
+
+message ActiveRequest {
+  string token = 1;
+}
+
+message RegisterRequest {
+  string username = 1;
+  string password = 2;
+  string email = 3;
+}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string access_token = 1;
+  string refresh_token = 2;
+}
+
+message AuthRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message GetRefreshTokenRequest {
+  string refresh_token = 1;
+}
+
+message GetRefreshTokenResponse {
+  string refresh_token = 1;
+}
+
+message GetAccessTokenRequest {
+  string refresh_token = 1;
+}
+
+message GetAccessTokenResponse {
+  string access_token = 1;
+}
