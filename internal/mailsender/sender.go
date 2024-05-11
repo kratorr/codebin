@@ -32,7 +32,7 @@ func NewSender(deps *SenderDeps) *Sender {
 	}
 }
 
-func (s *Sender) SendEmail(ctx context.Context, receiver string, payload, subject string) error {
+func (s *Sender) SendEmail(ctx context.Context, receiver, payload, subject string) error {
 	to := []string{
 		receiver,
 	}
